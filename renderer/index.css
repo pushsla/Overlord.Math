@@ -1,0 +1,76 @@
+html {
+  font-size: 20px;
+}
+
+body {
+  padding: 4px;
+  margin: 0;
+  background: url("../background.jpg");
+}
+
+.request__button, .request__condition, .request__conditions, .request__polygon, .request__action, .request__teamid, .teamtable_td, .teamtable_th {
+  margin-right: 5px;
+  background: #ddd;
+  padding: 2px 5px;
+  font: normal 20px sans-serif;
+  border: 1px solid #888;
+  border-radius: 2px;
+}
+
+.game {
+  position: relative;
+  display: grid;
+  grid-template-areas: "map stats" "map stats" "map stats" "map stats" "map request" "map request" "map statistics";
+}
+.game__map {
+  grid-area: map;
+}
+.game__stats {
+  grid-area: stats;
+}
+.game__request {
+  grid-area: request;
+}
+.game__control {
+  position: absolute;
+  z-index: 100;
+}
+.game__statistics {
+  grid-area: statistics;
+  max-height: 25px;
+}
+
+.map {
+  position: relative;
+}
+.map__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.map__polygon {
+  transition: all 0.8s;
+  opacity: 0.4;
+}
+.map__polygon.polygon_owned {
+  opacity: 0.6;
+}
+.map__text {
+  font-size: 25px;
+  fill: #fff;
+}
+
+.teamtable_th {
+  font-weight: bold;
+}
+.request__conditions {
+  border: none;
+  background: none;
+  min-height: 30px;
+  display: flex;
+  align-content: center;
+}
+
+/*# sourceMappingURL=index.css.map */

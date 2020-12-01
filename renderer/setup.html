@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Настройки игры</title>
+    <link rel="stylesheet" href="setup.css">
+</head>
+<body>
+<main class="setup">
+    <section class="setup__map" id="setup-map">
+        <select class="map__file" name="maps" id="select-map"></select>
+    </section>
+    <section class="setup__teams" id="setup-teams">
+        <div class="setup__amount">
+            <label for="teams-amount">Количество команд:</label>
+            <input type="range" class="teams__amount" name="teams-amount" id="teams-amount" value="1" min="1" max="10">
+        </div>
+        <ul class="teams__list" id="teams-list"></ul>
+    </section>
+    <section class="setup__problems" id="setup-problems">
+        <label for="problems-amount">Кол-во задач: </label>
+        <input class="problems__amount" name="problems-amount" type="number" id="problems-amount" value="10">
+    </section>
+    <button class="setup__submit" id="setup-submit">Начать</button>
+</main>
+<script>require('./setup')</script>
+</body>
+</html>

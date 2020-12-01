@@ -1,0 +1,42 @@
+html {
+  font-size: 20px;
+}
+
+body {
+  padding: 4px;
+  margin: 0;
+  background: url("../background.jpg");
+}
+
+.problems__amount, .map__file, .entry__color, .entry__name, .setup__submit {
+  margin-right: 5px;
+  background: #ddd;
+  padding: 2px 5px;
+  font: normal 20px sans-serif;
+  border: 1px solid #888;
+  border-radius: 2px;
+}
+
+.setup__amount {
+  display: flex;
+  align-content: center;
+}
+.teams__list {
+  list-style: none;
+}
+
+.list__entry {
+  display: flex;
+  align-content: center;
+  margin-bottom: 3px;
+}
+
+.map__file {
+  margin-bottom: 10px;
+}
+
+.problems__amount {
+  max-width: 50px;
+}
+
+/*# sourceMappingURL=setup.css.map */

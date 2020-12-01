@@ -1,0 +1,24 @@
+html {
+  font-size: 20px;
+}
+
+body {
+  padding: 4px;
+  margin: 0;
+  background: url("../background.jpg");
+}
+
+.teamtable_td, .teamtable_th {
+  margin-right: 5px;
+  background: #ddd;
+  padding: 2px 5px;
+  font: normal 20px sans-serif;
+  border: 1px solid #888;
+  border-radius: 2px;
+}
+
+.teamtable_th {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=statistics.css.map */
