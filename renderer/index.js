@@ -38,10 +38,20 @@ function epicBattle(result) {
         let team = _teams.getTeamByID(team_id)
         ipcRenderer.send('archieveGame', _map, _teams)
 
-        if (conditions[0].length >= conditions[1]) {
-            conditions[0].forEach((elem) => {
-                team.solved[elem-1] = 1
-            })
+        let solved = 0
+        conditions[1].forEach((elem) => {
+            if (elem[0] != undefined) {
+                if (elem[1]) {
+                    solved++
+                    team.solved[elem[0] - 1] = 1
+                }
+                else{
+                    team.solved[elem[0] - 1] = -1
+                }
+            }
+        })
+
+        if (solved == conditions[0]) {
             switch (action) {
                 case "power":
                     if (team.power < 10) {

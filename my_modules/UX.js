@@ -5,7 +5,7 @@ Request: {
     team_id: HTMLselect,
     action: HTMLselect,
     polygon_name: HTMLselect,
-    conditions: [HTMLcheckbox, HTMLcheckbox]
+    conditions: [needed_value, [[number, solved?], [number, solved?]]]
 }
 
 Request DOM representation:
@@ -24,6 +24,8 @@ let requestHtmlClass = {
     polygon_name: "request__polygon",
     conditions: "request__conditions",
     condition: "request__condition",
+    condition__problem: "condition__problem",
+    condition__solution: "condition__solution",
     button: "request__button"
 }
 
@@ -51,7 +53,7 @@ class Request {
             team_id: undefined,
             polygon_name: undefined,
             action: undefined,
-            conditions: [[],0]
+            conditions: [0,[]]
         }
 
         this.map = map
@@ -163,34 +165,50 @@ class Request {
 
         this.conditions.innerHTML = ""
         let amount = (requestConditions.hasOwnProperty(this.action.value)) ? requestConditions[this.action.value] : 1
-        this.result.conditions[1] = amount
-        this.result.conditions[0] = 0
+        this.result.conditions[0] = amount
+        this.result.conditions[1] = []
 
         let team = this.teams.getTeamByID(this.team_id.value)
-        let unsolved_problems = team.problems.filter(x => !team.solved[x-1] == 1)
+        let unsolved_problems = team.problems.filter(x => team.solved[x-1] == 0)
 
         for (let i = 0; i < amount; i++){
-            let condition = document.createElement('select')
-            condition.classList.add(requestHtmlClass.condition)
-            condition.name = "condition"
+            self.result.conditions[1].push([undefined, false])
 
-            condition.appendChild(document.createElement('option'))
+            let condition = document.createElement('div')
+            condition.classList.add(requestHtmlClass.condition)
+            let condition__problem = document.createElement('select')
+            condition__problem.classList.add(requestHtmlClass.condition__problem)
+            condition__problem.name = "condition"
+            condition.appendChild(condition__problem)
+            let condition__solution = document.createElement('input')
+            condition__solution.type="checkbox"
+            condition__solution.classList.add(requestHtmlClass.condition__solution)
+            condition__solution.name = "condition"
+            condition.appendChild(condition__solution)
+
+            condition__problem.appendChild(document.createElement('option'))
             unsolved_problems.forEach((elem) => {
                 let option = document.createElement('option')
                 option.value = elem
                 option.innerHTML = elem
 
-                condition.appendChild(option)
+                condition__problem.appendChild(option)
             })
 
-            condition.onchange = function(event){
-                let allconditions = Array.prototype.slice.call(self.conditions.children)
-                self.result.conditions[0] = []
-                allconditions.forEach((elem) => {
-                    if (elem.value != ""){
-                        self.result.conditions[0].push(elem.value)
-                    }
-                })
+            condition__problem.onchange = function(event){
+                self.result.conditions[1][i][0] = condition__problem.value;
+                // let allconditions = Array.prototype.slice.call(self.conditions.children)
+                // self.result.conditions[0] = []
+                // allconditions.forEach((cond) => {
+                //     self.result.conditions.push([])
+                //     if (elem.value != ""){
+                //         self.result.conditions[0].push(elem.value)
+                //     }
+                // })
+            }
+
+            condition__solution.onchange = function(event){
+                self.result.conditions[1][i][1] = condition__solution.checked;
             }
 
             this.conditions.appendChild(condition)

@@ -132,7 +132,10 @@ class TeamCollection {
                     let td = document.createElement('td')
                     td.classList.add(teamsHtmlClass.td)
                     td.innerHTML = teamKeyFunctions[key](elem[key])
-                    if (key == 'color') td.style.backgroundColor = elem[key]
+                    if (key == 'color'){
+                        td.style.backgroundColor = elem[key]
+                        td.style.color = elem[key]
+                    }
                     tr.appendChild(td)
                 }
             }
@@ -170,8 +173,17 @@ class TeamCollection {
             for (let i = 0; i < elem.solved.length; i++) {
                 let td = document.createElement('td')
                 td.classList.add(teamsHtmlClass.td)
-                td.innerHTML = elem.solved[i]
-                if (elem.solved[i] == 1) td.style.backgroundColor = "#00aa00"
+                if (elem.solved[i] == 1){
+                    td.innerHTML = elem.solved[i]
+                    td.style.backgroundColor = "#00aa00"
+                }
+                else if (elem.solved[i] == -1){
+                    td.innerHTML = 0
+                    td.style.backgroundColor = "#aa0000"
+                }
+                else{
+                    td.innerHTML = elem.solved[i]
+                }
                 tr.appendChild(td)
             }
             table.appendChild(tr)
